@@ -1,5 +1,6 @@
 using APICatalogo.Context;
 using APICatalogo.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,12 +9,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(OptionsBuilderConfigurationExtensions =>
-    optionsBuilderConfigurationExtensions.UseMySql(mySqlConnection,
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(mySqlConnection,
     ServerVersion.AutoDetect(mySqlConnection)));
 
 builder.Services.AddScoped<Categoria, Categoria>();
-
 
 var app = builder.Build();
 

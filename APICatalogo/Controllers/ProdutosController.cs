@@ -15,10 +15,5 @@ namespace APICatalogo.Controllers
         {
             _context = context;
         }
-        [HttpGet]
-        public IEnumerable<Produtos> Get()
-        {
-            var Produtos = _context.Produtos.ToList();
-        }
     }
 }
