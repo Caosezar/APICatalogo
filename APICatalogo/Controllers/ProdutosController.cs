@@ -1,8 +1,6 @@
 ﻿using APICatalogo.Context;
-using Microsoft.AspNetCore.Http;
+using APICatalogo.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
-using Platform.Util.Resourcer;
 
 namespace APICatalogo.Controllers
 {
@@ -14,6 +12,37 @@ namespace APICatalogo.Controllers
         public ProdutosController (AppDbContext context)
         {
             _context = context;
+        }
+        [HttpGet]
+        public ActionResult <IEnumerable<Produto>> Get()
+        {
+            var produtos = _context.Produtos.ToList();
+            if (produtos is null) 
+            {
+                return NotFound("Produto não encontrado");
+            }
+            return produtos;
+        }
+        [HttpGet ("{id:int}", Name="Obter Produto")]
+        public ActionResult <Produto> Get (int id)
+        {
+            var produto = _context.Produtos.FirstOrDefault(p => p.ProdutoId == id);
+            if (produto is null)
+            {
+                return NotFound();
+            }
+            return produto;
+        }
+        [HttpPost]
+        public ActionResult Post (Produto produto)
+        {
+            if (produto is null)
+            {
+                return BadRequest();
+            }
+            _context.Produtos.Add(produto);
+            _context.SaveChanges();
+            return new CreatedAtRouteResult ("ObterProduto", new  { id = produto.ProdutoId}, produto)
         }
     }
 }

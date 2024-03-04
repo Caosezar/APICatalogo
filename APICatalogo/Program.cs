@@ -13,8 +13,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(mySqlConnection,
     ServerVersion.AutoDetect(mySqlConnection)));
 
-builder.Services.AddScoped<Categoria, Categoria>();
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
