@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\Platform.Util\Platform.Util.csproj" />
   </ItemGroup>
 
 </Project>
