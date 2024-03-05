@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace APICatalogo.Migrations
 {
     /// <inheritdoc />
-    public partial class CatalogoDB : Migration
+    public partial class MigracaoInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,9 +21,9 @@ namespace APICatalogo.Migrations
                 {
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    Nome = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ImagemUrl = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false)
+                    ImagemUrl = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -38,12 +38,12 @@ namespace APICatalogo.Migrations
                 {
                     ProdutoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    Nome = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Descricao = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false)
+                    Descricao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Preco = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    ImagemUrl = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false)
+                    Preco = table.Column<decimal>(type: "decimal(14,4)", nullable: false),
+                    ImagemUrl = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Estoque = table.Column<float>(type: "float", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
