@@ -10,7 +10,6 @@ namespace APICatalogo.Controllers;
 [ApiController]
 public class CategoriasController : ControllerBase
 {
-    private readonly AppDbContext _context;
     private readonly ILogger<CategoriasController> _logger;
 
     public CategoriasController(AppDbContext context, ILogger<CategoriasController> logger)
